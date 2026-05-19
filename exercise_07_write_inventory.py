@@ -28,4 +28,16 @@ def write_inventory(filename, inventory):
         # iron:7
         # wood:10
     """
-    pass  # Reemplazar con tu implementación
+    with open (filename, "w") as archivo:
+        lista = [""]
+        for clave, valor in inventory.items():
+            if lista == [""]:
+                lista.append(clave)
+            else:
+                for i in range(len(lista)):
+                    if lista[i] > clave:
+                        lista.insert(i, clave)
+        for k in range (len(lista)):
+            for key, value in inventory.items():
+                if lista[k] == key:
+                    archivo.write(f"{key}:{value}\n")
