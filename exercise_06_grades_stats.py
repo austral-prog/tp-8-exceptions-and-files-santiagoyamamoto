@@ -34,4 +34,34 @@ def grades_stats(filename):
             "Cami": (10.0, 10.0, 10.0),
         }
     """
-    pass  # Reemplazar con tu implementación
+
+    with open (filename, "r") as archivo:
+        dic = {}
+        for linea in archivo:
+            if linea.strip() == "":
+                pass
+            else:
+                lista = []
+                total = 0
+                cant = 0
+                maximo = 0
+                minimo = 0
+                sep = linea.split(":")
+                sup = sep[1].split(",")
+                for i in sup:
+                    total += float(i)
+                    cant += 1
+                    if float(i) > maximo:
+                        maximo = float(i)
+                    if minimo == 0:
+                        minimo = float(i)
+                    else:
+                        if minimo > float(i):
+                            minimo = float(i)
+                lista.append(total / cant)
+                lista.append(maximo)
+                lista.append(minimo)
+                dic[sep[0]] = tuple(lista)
+        return dic
+
+
